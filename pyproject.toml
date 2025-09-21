@@ -1,0 +1,29 @@
+[project]
+name = "energy-calc-6"
+version = "1.0.0"
+requires-python = ">=3.11"
+description = "Worker SOC – OZE-first i Arbitraż. Parametry z params.*, dane z widoku PREP."
+authors = [{ name = "Your Team" }]
+
+# Zależności instalowane przez `pip install .`
+dependencies = [
+  "psycopg[binary]>=3.2,<4",
+  "pydantic>=2.7",
+  "pydantic-settings>=2.3",
+  "python-dateutil>=2.9",
+  "tzdata>=2024.1",
+  "PyYAML>=6.0",
+  "pandas>=2.2.2",
+  "numpy>=1.26"
+]
+
+# --- WAŻNE: konfiguracja builda (setuptools + układ src/) ---
+[build-system]
+requires = ["setuptools>=61", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools]
+package-dir = {"" = "src"}
+
+[tool.setuptools.packages.find]
+where = ["src"]

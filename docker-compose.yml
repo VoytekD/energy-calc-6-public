@@ -1,0 +1,29 @@
+services:
+  energy-calc-6:
+    build:
+      context: .
+      dockerfile: docker/Dockerfile
+    container_name: energy-calc-6
+    restart: unless-stopped
+    env_file:
+      - .env
+    environment:
+      - TZ=${TZ:-Europe/Warsaw}
+    volumes:
+      - ./sql:/app/sql:ro
+      - ./logs:/var/log/energy-calc:rw
+    networks:
+      - project_network
+    healthcheck:
+      test: >
+        sh -lc 'out=$$(python -m energy_calc.healthcheck --all);
+        rc=$$?;
+        echo "$$(date +%FT%T%z) $$out" | tee -a /var/log/energy-calc/health.log > /var/log/energy-calc/health_last.json;
+        exit $$rc'
+      interval: 60s
+      timeout: 10s
+      retries: 3
+      start_period: 60s
+
+networks:
+  project_network: {}

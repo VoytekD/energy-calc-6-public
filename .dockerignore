@@ -1,0 +1,44 @@
+# VCS
+.git
+.gitignore
+.gitattributes
+
+# Python cache / build
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.eggs/
+*.egg-info/
+dist/
+build/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.cache/
+
+# Virtual env
+.venv/
+venv/
+
+# IDE / OS
+.DS_Store
+.idea/
+.vscode/
+
+# Logs / temp
+*.log
+*.tmp
+*.swp
+*.swo
+*.bak
+
+# Compose files not needed in image
+docker-compose*.yml
+
+# Secrets / env (podawane przez env_file)
+.env
+.env.*
+
+# Node (jeśli by było)
+node_modules/
